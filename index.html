@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descargas</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 28px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Fondo metalizado animado con cambio de color continuo */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+        135deg,
+        #1e293b 0%,
+        #64748b 25%,
+        #cbd5e1 50%,
+        #475569 75%,
+        #0f172a 100%
+      );
+      background-size: 400% 400%;
+      animation: metalShift 14s ease-in-out infinite, hueCycle 24s linear infinite;
+    }
+
+    @keyframes metalShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes hueCycle {
+      0% { filter: hue-rotate(0deg) contrast(1.08); }
+      50% { filter: hue-rotate(180deg) contrast(1.12); }
+      100% { filter: hue-rotate(360deg) contrast(1.08); }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    /* Cabeza de Android */
+    .android-head {
+      width: 240px;
+      height: auto;
+      display: block;
+      margin-bottom: 10px;
+      transform: translateY(-10px);
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.38));
+    }
+
+    .download-card {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      text-decoration: none;
+      color: #ffffff;
+      padding: 20px 22px;
+      border-radius: 16px;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.24),
+        rgba(255, 255, 255, 0.08)
+      );
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .download-card:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.34),
+        rgba(255, 255, 255, 0.14)
+      );
+      box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.35),
+        inset 0 1px 2px rgba(255, 255, 255, 0.6);
+    }
+
+    .download-card:active {
+      transform: translateY(1px);
+    }
+
+    .logo-wrap {
+      flex: 1;
+      min-width: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .brand-logo {
+      max-width: 100%;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo-dixmax {
+      max-height: 52px;
+      filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.4));
+    }
+
+    .logo-rbtv {
+      max-height: 46px;
+      transform: scale(1.35);
+      filter: contrast(1.25) brightness(1.08) drop-shadow(0 2px 5px rgba(0, 0, 0, 0.45));
+    }
+
+    .logo-item3 {
+      width: 58px;
+      height: 58px;
+      border-radius: 13px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Recuadros negros con borde y flecha verde */
+    .download-box {
+      width: 54px;
+      height: 54px;
+      flex-shrink: 0;
+      background: #000000;
+      border: 2px solid #22c55e;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .download-card:hover .download-box {
+      background: #111111;
+      transform: scale(1.05);
+    }
+
+    .download-box svg {
+      width: 26px;
+      height: 26px;
+      stroke: #22c55e;
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <!-- Cabeza de Android -->
+    <svg class="android-head" viewBox="0 0 220 118" aria-label="Android">
+      <!-- Antenas -->
+      <line x1="68" y1="34" x2="46" y2="8" stroke="#3f4a28" stroke-width="6.5" stroke-linecap="round" />
+      <line x1="152" y1="34" x2="174" y2="8" stroke="#3f4a28" stroke-width="6.5" stroke-linecap="round" />
+
+      <!-- Cúpula de la cabeza -->
+      <path
+        d="M 22 108 A 88 84 0 0 1 198 108 Z"
+        fill="#a4c639"
+        stroke="#3f4a28"
+        stroke-width="6"
+        stroke-linejoin="round"
+      />
+
+      <!-- Sombra lateral suave en la cúpula -->
+      <path
+        d="M 154 34 A 88 84 0 0 1 194 105 L 166 105 A 74 74 0 0 0 140 31 Z"
+        fill="#88a828"
+      />
+
+      <!-- Brillo superior -->
+      <path
+        d="M 48 62 A 66 62 0 0 1 88 34"
+        fill="none"
+        stroke="#d8ef7c"
+        stroke-width="5"
+        stroke-linecap="round"
+      />
+
+      <!-- Ojos en X -->
+      <g stroke="#3a3f35" stroke-width="7.5" stroke-linecap="round">
+        <line x1="68" y1="64" x2="88" y2="84" />
+        <line x1="88" y1="64" x2="68" y2="84" />
+
+        <line x1="132" y1="64" x2="152" y2="84" />
+        <line x1="152" y1="64" x2="132" y2="84" />
+      </g>
+    </svg>
+
+    <!-- Botón 1: Dixmax -->
+    <a href="https://www.mediafire.com/file/ptwwkfe28lfxbwy/%255BTV%255Ddixmax-tv-v3.1.5.apk/file?dkey=xts18vsaw1h&r=1439" class="download-card">
+      <div class="logo-wrap">
+        <img
+          src="https://dixmaxapp.net/wp-content/uploads/2026/08/logo-v2.webp"
+          alt="Dixmax"
+          class="brand-logo logo-dixmax"
+        >
+      </div>
+      <div class="download-box" aria-label="Descargar Dixmax">
+        <svg viewBox="0 0 24 24">
+          <line x1="12" y1="4" x2="12" y2="18"></line>
+          <polyline points="6 12 12 18 18 12"></polyline>
+        </svg>
+      </div>
+    </a>
+
+    <!-- Botón 2: RBTV -->
+    <a href="https://download1528.mediafire.com/xif2y80ikt2g0vYyjqN5g9ZuUJpKjv1s9Qf0pTqnHUYIUoKzsXkueD23Jc352PVw6mArjxV6mL5c90t9k0E43ZSlNNoZ73jpJS-BLTPCqLzD7QZz7n5YYDySbYsfRctRIeMzBsC70HIg_wFPEsa_EXPqAQCRInhEjqULzhy_w1eo/snvyo5g9u2ji6s1/RBTV%2B.apk" class="download-card">
+      <div class="logo-wrap">
+        <img
+          src="https://rbtv.com.es/wp-content/uploads/2026/09/RBTV-logo.webp"
+          alt="RBTV"
+          class="brand-logo logo-rbtv"
+        >
+      </div>
+      <div class="download-box" aria-label="Descargar RBTV">
+        <svg viewBox="0 0 24 24">
+          <line x1="12" y1="4" x2="12" y2="18"></line>
+          <polyline points="6 12 12 18 18 12"></polyline>
+        </svg>
+      </div>
+    </a>
+
+    <!-- Botón 3: TDT Spain -->
+    <a href="https://www.tdtspain.com/apk/TDTSpain.apk" class="download-card">
+      <div class="logo-wrap">
+        <img
+          src="https://play-lh.googleusercontent.com/j0NO-bDu_6H42E3f_s6IRRrJXehG9ReslH5zfbYhOzg1bcPbBcKIBx4BNfE0XUPhnRN4mbSzBpniWE2Qvnexa3U"
+          alt="TDT Spain"
+          class="brand-logo logo-item3"
+        >
+      </div>
+      <div class="download-box" aria-label="Descargar TDT Spain">
+        <svg viewBox="0 0 24 24">
+          <line x1="12" y1="4" x2="12" y2="18"></line>
+          <polyline points="6 12 12 18 18 12"></polyline>
+        </svg>
+      </div>
+    </a>
+  </main>
+
+</body>
+</html>
